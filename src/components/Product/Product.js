@@ -12,11 +12,10 @@ const Product = (props) => {
   const getPrice = () => {
     return (
       props.basePrice +
-      props.sizes.find((element) => element === currentSize).additionalPrice
+      props.sizes.find((element) => element.name === currentSize)
+        .additionalPrice
     );
   };
-
-  
 
   const prepareColorClassName = (color) => {
     return styles[
@@ -48,11 +47,12 @@ const Product = (props) => {
                     <button
                       type='button'
                       className={clsx(
-                        size,
-                        size === currentSize && styles.active
+                        size.name,
+                        size.name === currentSize && styles.active
                       )}
                       onClick={() => {
-                        setCurrentSize(props.sizes[index]);
+                        console.log(currentSize);
+                        setCurrentSize(props.sizes[index].name);
                       }}
                     >
                       {size.name}
@@ -81,9 +81,7 @@ const Product = (props) => {
               ))}
             </ul>
           </div>
-          <Button
-            className={styles.button}
-          >
+          <Button className={styles.button}>
             <span className='fa fa-shopping-cart' />
           </Button>
         </form>
@@ -96,10 +94,17 @@ Product.propTypes = {
   title: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   colors: PropTypes.arrayOf(PropTypes.string).isRequired,
-  id: PropTypes.number.isRequired,
   basePrice: PropTypes.number.isRequired,
-  // sizes.name: PropTypes.string.isRequired,
-  // siezesadditionalPrice: PropTypes.number.isRequired
+  // sizes: PropTypes.shape({
+  //   additionalPrice: PropTypes.number.isRequired,
+  //   name: PropTypes.string.isRequired,
+  // }),
+  sizes: PropTypes.arrayOf(
+    PropTypes.shape({
+      additionalPrice: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+    })
+  ),
 };
 
 export default Product;
