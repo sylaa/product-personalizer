@@ -23,6 +23,16 @@ const Product = (props) => {
     ];
   };
 
+  const handleSubmit = e => {
+    e.preventDefault();
+    console.log("Summary");
+    console.log("===========")
+    console.log("Name: " + props.title)
+    console.log("Price: " + getPrice())
+    console.log("Size: " + currentSize)
+    console.log("Color: " + currentColor)
+}
+
   return (
     <article className={styles.product}>
       <div className={styles.imageContainer}>
@@ -37,7 +47,7 @@ const Product = (props) => {
           <h2 className={styles.name}> {props.title} </h2>
           <span className={styles.price}>Price: {getPrice()}$</span>
         </header>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className={styles.sizes}>
             <h3 className={styles.optionLabel}>Sizes</h3>
             <ul className={styles.choices}>
@@ -51,7 +61,9 @@ const Product = (props) => {
                         size.name === currentSize && styles.active
                       )}
                       onClick={() => {
+                        console.log(size.name);
                         console.log(currentSize);
+                        console.log(index);
                         setCurrentSize(props.sizes[index].name);
                       }}
                     >
@@ -74,7 +86,9 @@ const Product = (props) => {
                       item === currentColor && styles.active
                     )}
                     onClick={() => {
+                      console.log(currentColor);
                       setCurrentColor(props.colors[index]);
+                      console.log(item);
                     }}
                   />
                 </li>
@@ -95,10 +109,6 @@ Product.propTypes = {
   name: PropTypes.string.isRequired,
   colors: PropTypes.arrayOf(PropTypes.string).isRequired,
   basePrice: PropTypes.number.isRequired,
-  // sizes: PropTypes.shape({
-  //   additionalPrice: PropTypes.number.isRequired,
-  //   name: PropTypes.string.isRequired,
-  // }),
   sizes: PropTypes.arrayOf(
     PropTypes.shape({
       additionalPrice: PropTypes.number.isRequired,
