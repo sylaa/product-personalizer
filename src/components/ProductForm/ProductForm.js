@@ -4,7 +4,7 @@ import Button from '../Button/Button.js';
 import styles from '../Product/Product.module.scss';
 import PropTypes from 'prop-types';
 
-const ProductForm = (props) => {
+const ProductForm = props => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Summary');

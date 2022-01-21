@@ -20,13 +20,11 @@ const Product = (props) => {
 
   return (
     <article className={styles.product}>
-      <div>
         <ProductImage
           title={props.title}
           name={props.name}
-          currentColor={props.currentColor}
+          currentColor={currentColor}
         />
-      </div>
       <div>
         <header>
           <h2 className={styles.name}> {props.title} </h2>
@@ -40,7 +38,7 @@ const Product = (props) => {
           colors = {props.colors}
           sizes = {props.sizes}
           setCurrentColor = {setCurrentColor}
-          setCurentSize = {setCurrentSize}
+          setCurrentSize = {setCurrentSize}
         />
       </div>
     </article>
