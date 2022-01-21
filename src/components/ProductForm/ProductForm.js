@@ -10,7 +10,7 @@ const ProductForm = props => {
     console.log('Summary');
     console.log('===========');
     console.log('Name: ' + props.title);
-    console.log('Price: ' + props.getPrice());
+    console.log('Price: ' + props.getPrice);
     console.log('Size: ' + props.currentSize);
     console.log('Color: ' + props.currentColor);
   };
@@ -39,7 +39,7 @@ const ProductForm = props => {
 ProductForm.propTypes = {
   title: PropTypes.string,
   colors: PropTypes.arrayOf(PropTypes.string).isRequired,
-  getPrice: PropTypes.func.isRequired,
+  getPrice: PropTypes.number.isRequired,
   sizes: PropTypes.arrayOf(
     PropTypes.shape({
       additionalPrice: PropTypes.number.isRequired,
